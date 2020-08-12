@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>First Knockout app</title>
 </head>
+
 <body>
-  
+  <div class='card-container' data-bind='foreach: characters'>
+    <div class='card'>
+      <img class='card__image' data-bind='attr: {src: image}' />
+      <h4 class='card__name' data-bind="text: name"></h4>
+    </div>
+  </div>
   <script src='./bundle.js'></script>
 </body>
+
 </html>
