@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://rickandmortyapi.com/api/'
+  baseURL: 'https://opentdb.com'
 });

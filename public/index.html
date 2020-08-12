@@ -5,15 +5,36 @@
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>First Knockout app</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class='card-container' data-bind='foreach: characters'>
-    <div class='card'>
-      <img class='card__image' data-bind='attr: {src: image}' />
-      <h4 class='card__name' data-bind="text: name"></h4>
+
+  <div class='game'>
+
+    <!-- Container das questões -->
+    <div class='game-questions' data-bind="with: currentQuestion()">
+      <div class='game-questions__question'>
+        <h3 data-bind='html: decodeURI(question)'></h3>
+        <p data-bind='text: category'></p>
+      </div>
+      <div class='game-questions__answers' data-bind='foreach: answers'>
+        <button data-bind="html: decodeURI($data.toString()), click: $root.isCorrect"></button>
+      </div>
     </div>
+
+    <!-- Container dos status/infos-->
+    <div class='game-info'>
+      <div class='game-info__game-start'>
+        <input type="text" data-bind='value: numberOfQuestions'>
+        <button data-bind="click: buttonStart, enable: !gameStarted()">Start game</button>
+      </div>
+      <button class='game-info__next'
+        data-bind="click: $root.nextQuestion, visible: $root.enableNextQuestionButton">Próxima pergunta</button>
+    </div>
+
   </div>
+
   <script src='./bundle.js'></script>
 </body>
 
