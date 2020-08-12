@@ -11,7 +11,7 @@
 <body>
 
   <div class='game'>
-    
+
     <!-- Container das questões -->
     <div class='game-questions' data-bind="with: currentQuestion()">
       <div class='game-questions__question'>
@@ -29,7 +29,10 @@
         <input type="text" data-bind='value: numberOfQuestions'>
         <button data-bind="click: buttonStart, enable: !gameStarted()">Start game</button>
       </div>
+      <button class='game-info__next'
+        data-bind="click: $root.nextQuestion, visible: $root.enableNextQuestionButton">Próxima pergunta</button>
     </div>
+
   </div>
 
   <script src='./bundle.js'></script>
