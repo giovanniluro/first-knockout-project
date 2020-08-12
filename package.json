@@ -7,7 +7,8 @@
     "knockout": "^3.5.1"
   },
   "scripts": {
-    "dev": "webpack --mode=development -w"
+    "dev": "webpack-dev-server --mode=development",
+    "build": "webpack --mode=procution"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -15,6 +16,7 @@
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "^8.1.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
