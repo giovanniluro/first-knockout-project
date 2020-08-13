@@ -4,11 +4,15 @@
 @right     : #439523;
 
 html {
-  height: 100%;
-  width : 100%;
-
   ::-webkit-scrollbar {
     width: 0px;
+  }
+
+  -webkit-tap-highlight-color: transparent;
+
+  @media (min-width: 511px) {
+    height: 100%;
+    width : 100%;
   }
 }
 
@@ -20,7 +24,7 @@ html {
 }
 
 p {
-  font-size: .7em;
+  font-size: .8em;
 }
 
 h3 {
@@ -32,12 +36,15 @@ h4 {
 }
 
 body {
-  height         : 100%;
-  width          : 100%;
   background     : @background;
   display        : flex;
   justify-content: center;
   align-items    : center;
+
+  @media (min-width: 511px) {
+    height: 100%;
+    width : 100%;
+  }
 }
 
 .game {
@@ -51,10 +58,14 @@ body {
   box-shadow     : 0 0 10px 4px rgba(0, 0, 0, 0.3);
 
   @media(max-width: 620px) {
-    min-height: 100vh;
-    width: 100vw;
+    min-height: 100%;
+    width     : 100vw;
   }
 
+  @media(max-width: 510px) {
+    flex-direction: column;
+    min-height    : 100vh;
+  }
 }
 
 .game-info {
@@ -67,22 +78,34 @@ body {
   align-items   : center;
   overflow      : hidden;
 
+  @media(max-width: 510px) {
+    width         : 100%;
+    min-height    : 20vh;
+    padding       : .5em;
+    flex-direction: column-reverse;
+    overflow      : visible;
+    margin-top    : 50px;
+  }
 
   &__game-start {
-
     width  : 100%;
     display: flex;
 
     >input {
-      width        : 60%;
+      width        : 70%;
       border       : 0;
       outline      : 0;
       padding      : .4em;
       border-radius: 12px 0 0 12px;
+
+      @media(max-width: 620px) {
+        width: 60%;
+      }
+
     }
 
     >button {
-      width          : 40%;
+      width          : 30%;
       border         : 0;
       outline        : 0;
       margin         : 0 0 0 1em;
@@ -91,6 +114,11 @@ body {
       justify-content: center;
       align-items    : center;
 
+      @media(max-width: 620px) {
+        width: 40%;
+      }
+
+      //Essa div é referente ao círculo de carregamento quando está pegando os dados da api
       >div {
         height             : 1.5em;
         width              : 1.5em;
@@ -121,6 +149,14 @@ body {
     @media(max-width: 620px) {
       flex-direction: column;
     }
+
+    @media(max-width: 510px) {
+      flex-direction: row;
+      order         : 2;
+      margin-bottom : 1.5em;
+      margin-top    : 0;
+    }
+
 
     @keyframes show {
       from {
@@ -155,6 +191,11 @@ body {
       margin       : .3em;
       text-align   : center;
       border-radius: 12px;
+
+      @media(max-width: 510px) {
+        width: 90%;
+      }
+
     }
 
     &--right {
@@ -178,11 +219,19 @@ body {
   }
 
   &__next {
-    position   : absolute;
-    bottom     : 3em;
-    padding    : 1em;
-    font-weight: bold;
-    animation  : move-right .6s;
+    position       : absolute;
+    bottom         : 3em;
+    padding        : 1em;
+    font-weight    : bold;
+    animation      : move-right .6s;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+
+    @media(max-width: 510px) {
+      top   : -50px;
+      height: 40px;
+    }
 
     @keyframes move-right {
       from {
@@ -205,6 +254,11 @@ body {
   flex-direction: column;
   align-items   : center;
 
+  @media(max-width: 510px) {
+    padding: 0;
+  }
+
+
   &__question {
     width         : 100%;
     flex-wrap     : wrap;
@@ -217,8 +271,15 @@ body {
     border-radius : 14px;
     transition    : .3s;
 
+    @media(max-width: 510px) {
+      padding: 1.5em 1em;
+    }
+
+
+
     >p {
       font-weight: lighter;
+      text-align : center;
     }
 
     h3 {
