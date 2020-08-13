@@ -1,6 +1,6 @@
 # Primeiro projeto utilizando KnockoutJS
 
-Para acessar a página clique (aqui)[https://giovanniluro.github.io/first-knockout-project]!
+Para acessar a página clique [aqui](https://giovanniluro.github.io/first-knockout-project)!
 
 Se preferir você pode clonar o repositório e rodar `yarn` para instalar as dependências, e então `yarn dev` para rodar o script
 quer irá abrir o webpack-dev-server em __localhost:8080__ !
