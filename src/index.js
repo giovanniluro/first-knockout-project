@@ -1,11 +1,12 @@
 import ko from 'knockout';
 import api from './services/api';
-import './styles.less';
 import { Question } from './models/Question';
+import './styles.less'
 import $ from 'jquery';
 import shuffleArray from './services/shuffleArray';
 import he from 'he'; //biblioteca pra fazer decode de htmlentities --api é em php, vem com as entidades zoadas--
 
+//Definindo o modelo
 function modelView() {
 
   this.numberOfQuestions = ko.observable(5);
@@ -72,10 +73,12 @@ function modelView() {
     this.evaluate(this.currentQuestion().answers, this.currentQuestion().correct_answer);
   };
 
-  //Animando os botões de acordo com seus valores de verdade/mentira
+  //Animando os botões de resposta de acordo com seus valores de verdade/mentira
   this.evaluate = (answers, correct) => {
     answers.map(answer => {
-      answer !== he.decode(correct) ? $(`button:contains(${he.decode(answer)})`)[0].classList.add('wrong') : $(`button:contains(${he.decode(answer)})`)[0].classList.add('right');
+      he.decode(answer) !== he.decode(correct) ? $(`button:contains(${he.decode(answer)})`).filter(() => $(this).text() === he.decode(answer)).prevObject[0].classList.add('wrong') : $(`button:contains(${he.decode(answer)})`).filter(() => $(this).text() === he.decode(answer)).prevObject[0].classList.add('right');
+      // console.log($(`button:contains(${he.decode(answer)})`).filter(() => $(this).text() === he.decode(answer)).prevObject[0]);
+
     });
 
     this.enableNextQuestionButton(true);
@@ -96,4 +99,5 @@ function modelView() {
 
 }
 
+//Aplicando as bindings do modelo
 ko.applyBindings(new modelView());

@@ -24,15 +24,15 @@ html {
 }
 
 p {
-  font-size: .8em;
+  font-size: .7em;
 }
 
 h3 {
-  font-size: 1em;
+  font-size: .9em;
 }
 
 h4 {
-  font-size: .9em;
+  font-size: .8em;
 }
 
 body {
@@ -40,6 +40,7 @@ body {
   display        : flex;
   justify-content: center;
   align-items    : center;
+  display        : hidden;
 
   @media (min-width: 511px) {
     height: 100%;
@@ -55,17 +56,19 @@ body {
   border         : 2px solid darken(@content, 20%);
   display        : flex;
   justify-content: space-between;
-  box-shadow     : 0 0 10px 4px rgba(0, 0, 0, 0.3);
+  box-shadow     : 0 0 8px 4px rgba(0, 0, 0, 0.3);
 
   @media(max-width: 620px) {
     min-height: 100%;
     width     : 100vw;
+    border    : 0;
   }
 
   @media(max-width: 510px) {
     flex-direction: column;
     min-height    : 100vh;
   }
+
 }
 
 .game-info {
@@ -80,7 +83,6 @@ body {
 
   @media(max-width: 510px) {
     width         : 100%;
-    min-height    : 20vh;
     padding       : .5em;
     flex-direction: column-reverse;
     overflow      : visible;
@@ -199,7 +201,6 @@ body {
     }
 
     &--right {
-
       border-right: 2px solid darken(@content, 20%);
 
       @media(max-width: 620px) {
@@ -208,12 +209,15 @@ body {
 
       h4 {
         background: @right;
+        box-shadow: 0 0 0 2px darken(@right, 10%);
       }
     }
 
     &--wrong {
+
       h4 {
         background: @wrong;
+        box-shadow: 0 0 0 2px darken(@wrong, 10%);
       }
     }
   }
@@ -227,6 +231,8 @@ body {
     display        : flex;
     align-items    : center;
     justify-content: center;
+    border         : 2px solid darken(@content, 15%);
+    outline        : 0;
 
     @media(max-width: 510px) {
       top   : -50px;
@@ -255,7 +261,7 @@ body {
   align-items   : center;
 
   @media(max-width: 510px) {
-    padding: 0;
+    padding: .4em .6em;
   }
 
 
@@ -270,6 +276,7 @@ body {
     color         : #fbfbfb;
     border-radius : 14px;
     transition    : .3s;
+    box-shadow    : 0 0 4px 2px rgba(0, 0, 0, 0.3);
 
     @media(max-width: 510px) {
       padding: 1.5em 1em;
@@ -317,21 +324,21 @@ body {
       color        : white;
       transition   : .3s;
       cursor       : pointer;
+      box-shadow   : 0 0 4px 2px rgba(0, 0, 0, 0.3);
 
-      &:hover {
-        transform: translate(2px, 2px);
+      @media(min-width: 510px) {
+        &:hover {
+          transform: translate(2px, 2px);
+        }
       }
 
       &.wrong {
         background: @wrong;
-        transform : translateY(20px);
-        transition: 1s;
-        opacity   : 0;
+        opacity   : 0.5;
       }
 
       &.right {
         background: @right;
-        width     : 100%;
         cursor    : default;
 
         &:hover {
