@@ -14,23 +14,41 @@
 
     <!-- Container das questões -->
     <div class='game-questions' data-bind="with: currentQuestion()">
+
       <div class='game-questions__question'>
-        <h3 data-bind='html: decodeURI(question)'></h3>
         <p data-bind='text: category'></p>
+        <h3 data-bind='html: question'></h3>
       </div>
+
       <div class='game-questions__answers' data-bind='foreach: answers'>
         <button data-bind="html: decodeURI($data.toString()), click: $root.isCorrect"></button>
       </div>
+
     </div>
 
     <!-- Container dos status/infos-->
     <div class='game-info'>
+
       <div class='game-info__game-start'>
         <input type="text" data-bind='value: numberOfQuestions'>
-        <button data-bind="click: buttonStart, enable: !gameStarted()">Start game</button>
+        <button data-bind="click: buttonStart, enable: !gameStarted(), html: loading"></button>
       </div>
-      <button class='game-info__next'
-        data-bind="click: $root.nextQuestion, visible: $root.enableNextQuestionButton">Próxima pergunta</button>
+
+      <div class='game-info__score-container' data-bind="visible: gameStarted">
+        <div class='game-info__score game-info__score--right'>
+          <h4>Rights</h4>
+          <p data-bind="html: rightQuestions"></p>
+        </div>
+        <div class='game-info__score game-info__score--wrong'>
+          <h4>Wrongs</h4>
+          <p data-bind="html: wrongQuestions"></p>
+        </div>
+      </div>
+
+      <button class='game-info__next' data-bind="click: $root.nextQuestion, visible: $root.enableNextQuestionButton">
+        Next question
+      </button>
+
     </div>
 
   </div>

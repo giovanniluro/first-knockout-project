@@ -1,8 +1,8 @@
 export class Question {
 
   constructor(
-    category = 'Select the number of questions you want to play with on the game info section and then click "Start game" button!',
-    question = 'You dont have any questions yet...',
+    category = 'You dont have any questions yet...',
+    question = 'Select the number of questions you want to play with on the game info section and then click "Start game" button!',
     correct_answer = '',
     answers = []
   ) {
@@ -13,8 +13,7 @@ export class Question {
 
     //Validar a resposta do usuário (chamada no binding click do button de resposta)
     this.isCorrect = (answer) => {
-      console.log(answer, correct_answer);
-       return (answer == correct_answer) ? true:false;
+      return (answer == correct_answer) ? true : false;
     };
   }
 

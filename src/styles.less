@@ -19,6 +19,18 @@ html {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+p {
+  font-size: .7em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+h4 {
+  font-size: .9em;
+}
+
 body {
   height         : 100%;
   width          : 100%;
@@ -37,6 +49,12 @@ body {
   display        : flex;
   justify-content: space-between;
   box-shadow     : 0 0 10px 4px rgba(0, 0, 0, 0.3);
+
+  @media(max-width: 620px) {
+    min-height: 100vh;
+    width: 100vw;
+  }
+
 }
 
 .game-info {
@@ -47,6 +65,8 @@ body {
   border        : 2px solid darken(@content, 20%);
   position      : relative;
   align-items   : center;
+  overflow      : hidden;
+
 
   &__game-start {
 
@@ -62,19 +82,119 @@ body {
     }
 
     >button {
-      width  : 40%;
-      border : 0;
-      outline: 0;
-      margin : 0 0 0 1em;
-      padding: 6px;
+      width          : 40%;
+      border         : 0;
+      outline        : 0;
+      margin         : 0 0 0 1em;
+      padding        : 6px;
+      display        : flex;
+      justify-content: center;
+      align-items    : center;
+
+      >div {
+        height             : 1.5em;
+        width              : 1.5em;
+        border             : 2px solid black;
+        border-bottom-color: transparent;
+        border-radius      : 50%;
+        animation          : rotate 1s linear infinite;
+
+        @keyframes rotate {
+          from {
+            transform: rotateZ(0deg);
+          }
+
+          to {
+            transform: rotateZ(360deg);
+          }
+        }
+      }
+    }
+  }
+
+  &__score-container {
+    display   : flex;
+    width     : 100%;
+    margin-top: 1.5em;
+    animation : show .4s;
+
+    @media(max-width: 620px) {
+      flex-direction: column;
+    }
+
+    @keyframes show {
+      from {
+        opacity  : 0;
+        transform: translateY(3em);
+      }
+
+      to {
+        opacity  : 1;
+        transform: translateY(0em);
+      }
+    }
+  }
+
+  &__score {
+    width          : 50%;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    cursor         : default;
+
+    @media(max-width: 620px) {
+      width: 100%;
+    }
+
+    >p,
+    >h4 {
+      width        : 80%;
+      padding      : .5em;
+      background   : lighten(@content, 15%);
+      margin       : .3em;
+      text-align   : center;
+      border-radius: 12px;
+    }
+
+    &--right {
+
+      border-right: 2px solid darken(@content, 20%);
+
+      @media(max-width: 620px) {
+        border-right: none;
+      }
+
+      h4 {
+        background: @right;
+      }
+    }
+
+    &--wrong {
+      h4 {
+        background: @wrong;
+      }
     }
   }
 
   &__next {
     position   : absolute;
     bottom     : 3em;
-    padding    : 2em;
+    padding    : 1em;
     font-weight: bold;
+    animation  : move-right .6s;
+
+    @keyframes move-right {
+      from {
+        opacity  : 0;
+        transform: translateX(-10em);
+      }
+
+      100% {
+        opacity  : 1;
+        transform: translateX(0);
+      }
+    }
   }
 }
 
@@ -95,14 +215,23 @@ body {
     background    : darken(@content, 25%);
     color         : #fbfbfb;
     border-radius : 14px;
-    transition: .3s;
+    transition    : .3s;
+
+    >p {
+      font-weight: lighter;
+    }
+
+    h3 {
+      text-align: center;
+      margin-top: .25em;
+    }
 
     &--right {
       box-shadow: 0 0 0 4px @right;
     }
 
     &--wrong {
-      box-shadow: 0 0 0 4px @right;
+      box-shadow: 0 0 0 4px @wrong;
     }
 
   }
@@ -126,6 +255,7 @@ body {
       font-weight  : bold;
       color        : white;
       transition   : .3s;
+      cursor       : pointer;
 
       &:hover {
         transform: translate(2px, 2px);
